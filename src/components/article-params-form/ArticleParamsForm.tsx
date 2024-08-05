@@ -42,9 +42,11 @@ export const ArticleParamsForm = ({
 		contentWidth: params.contentWidth,
 	});
 
-	const handleFormChange = (key: keyof ArticleStateType) => (value: any) => {
-		setFormState((prevState) => ({ ...prevState, [key]: value }));
-	};
+	const handleFormChange =
+		<T,>(key: keyof ArticleStateType) =>
+		(value: T) => {
+			setFormState((prevState) => ({ ...prevState, [key]: value }));
+		};
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -70,33 +72,43 @@ export const ArticleParamsForm = ({
 						selected={formState.fontFamilyOption}
 						options={fontFamilyOptions}
 						title='Шрифт'
-						onChange={handleFormChange('fontFamilyOption')}
+						onChange={handleFormChange<(typeof fontFamilyOptions)[number]>(
+							'fontFamilyOption'
+						)}
 					/>
 					<RadioGroup
 						name='fontSize'
 						selected={formState.fontSizeOption}
 						options={fontSizeOptions}
 						title='Размер шрифта'
-						onChange={handleFormChange('fontSizeOption')}
+						onChange={handleFormChange<(typeof fontSizeOptions)[number]>(
+							'fontSizeOption'
+						)}
 					/>
 					<Select
 						selected={formState.fontColor}
 						options={fontColors}
 						title='Цвет шрифта'
-						onChange={handleFormChange('fontColor')}
+						onChange={handleFormChange<(typeof fontColors)[number]>(
+							'fontColor'
+						)}
 					/>
 					<Separator />
 					<Select
 						selected={formState.backgroundColor}
 						options={backgroundColors}
 						title='Цвет фона'
-						onChange={handleFormChange('backgroundColor')}
+						onChange={handleFormChange<(typeof backgroundColors)[number]>(
+							'backgroundColor'
+						)}
 					/>
 					<Select
 						selected={formState.contentWidth}
 						options={contentWidthArr}
 						title='Ширина контента'
-						onChange={handleFormChange('contentWidth')}
+						onChange={handleFormChange<(typeof contentWidthArr)[number]>(
+							'contentWidth'
+						)}
 					/>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' type='reset' />

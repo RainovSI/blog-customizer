@@ -14,6 +14,8 @@ export const useToggleForm = ({
 	const toggleForm = () => setIsOpen(!isOpen);
 
 	useEffect(() => {
+		if (!isOpen) return;
+
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
 				wrapperRef.current &&
@@ -27,7 +29,7 @@ export const useToggleForm = ({
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [wrapperRef, setIsOpen]);
+	}, [isOpen, wrapperRef, setIsOpen]);
 
 	return toggleForm;
 };
