@@ -13,6 +13,10 @@
 	transition: transform 0.5s ease;
 }
 
+.container:active {
+	background: rgb(120 120 120);
+}
+
 .container_open {
 	transform: translate(616px);
 }
